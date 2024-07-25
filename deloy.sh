@@ -11,4 +11,4 @@ TEMPLATE_PATH="$2"
 PARAMETERS_PATH="$3"
 
 # AWS CLI command to update the stack
-aws cloudformation update-stack --stack-name $STACK_NAME --template-body file://"$TEMPLATE_PATH" --parameters file://"$PARAMETERS_PATH" --region us-east-1 --profile udacity
+aws cloudformation deloy --stack-name $STACK_NAME --template-body file://"$TEMPLATE_PATH" --parameters file://"$PARAMETERS_PATH" --region us-east-1 --profile udacity

@@ -2,13 +2,13 @@
 # Script to update an AWS CloudFormation stack
 
 # Check if the correct number of arguments is passed
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <template file path> <parameters file path>"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <name stack> <template file path> <parameters file path>"
     exit 1
 fi
-
-TEMPLATE_PATH="$1"
-PARAMETERS_PATH="$2"
+STACK_NAME="$1"
+TEMPLATE_PATH="$2"
+PARAMETERS_PATH="$3"
 
 # AWS CLI command to update the stack
-aws cloudformation create-stack --stack-name example-stack-toannp1 --template-body file://"$TEMPLATE_PATH" --parameters file://"$PARAMETERS_PATH" --region us-east-1 --profile udacity
+aws cloudformation create-stack --stack-name $STACK_NAME --template-body file://"$TEMPLATE_PATH" --parameters file://"$PARAMETERS_PATH" --region us-east-1 --profile udacity
