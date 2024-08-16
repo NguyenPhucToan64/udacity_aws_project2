@@ -1,0 +1,14 @@
+[
+    {
+        "ParameterKey": "EnvironmentName",
+        "ParameterValue": "udagram"
+    },
+    {
+        "ParameterKey": "KeySSH",
+        "ParameterValue": "toan-ssh"
+    },
+    {
+        "ParameterKey": "MyIPSSH",
+        "ParameterValue": "113.160.225.220/32"
+    }
+]
