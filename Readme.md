@@ -18,6 +18,11 @@ aws configured --profile udacity
 ```bash
 ./udagram.sh udagram 
 ```
+
+```bash
+Upload 1 image named udagram.jpg to S3 bucket. 
+```
+
 ## Delete stack
 ```bash
 ./udagram.sh delete
