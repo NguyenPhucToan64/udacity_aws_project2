@@ -17,6 +17,6 @@ fi
 
 if [ $1 == "delete" ]
 then
-    aws cloudformation delete-stack --stack-name udagram-app --region us-east-1 --profile quang
-    aws cloudformation delete-stack --stack-name network-udagram --region us-east-1 --profile quang
+    aws cloudformation delete-stack --stack-name udagram-app --region us-east-1 --profile udacity
+    aws cloudformation delete-stack --stack-name network-udagram --region us-east-1 --profile udacity
 fi
