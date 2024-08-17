@@ -5,10 +5,10 @@
     },
     {
         "ParameterKey": "KeySSH",
-        "ParameterValue": "toan-ssh"
+        "ParameterValue": "keyssh"
     },
     {
         "ParameterKey": "MyIPSSH",
-        "ParameterValue": "113.160.225.220/32"
+        "ParameterValue": "myip"
     }
 ]

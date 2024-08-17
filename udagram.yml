@@ -8,15 +8,15 @@ Parameters:
         Type: String
     MyIPSSH:
         Description: My IP local connect EC2
-        Type: String
-        Default: 0.0.0.0/0
+        Type: 'AWS::SSM::Parameter::Value<String>'
     KeySSH:
         Description: My keySSH
-        Type: String
+        Type: 'AWS::SSM::Parameter::Value<String>'
     S3BucketName:
         Description: Name S3 bucket
         Type: String
         Default: udacity-s3-toannp1-641993
+        
 Resources:
   LBSecGroup:
     Type: AWS::EC2::SecurityGroup
@@ -35,10 +35,6 @@ Resources:
         FromPort: 80
         ToPort: 80
         CidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        FromPort: 8080
-        ToPort: 8080
-        CidrIp: 0.0.0.0/0
   WebServerSecGroup:
     Type: AWS::EC2::SecurityGroup
     DependsOn: LBSecGroup
@@ -49,8 +45,8 @@ Resources:
           !Sub "${EnvironmentName}-VPCID"
       SecurityGroupIngress:
       - IpProtocol: tcp
-        FromPort: 8080
-        ToPort: 8080
+        FromPort: 80
+        ToPort: 80
         SourceSecurityGroupId: !Ref LBSecGroup
       - IpProtocol: tcp
         FromPort: 22
@@ -139,7 +135,7 @@ Resources:
             # Tạo tập tin cấu hình Nginx
             cat <<EOF | sudo tee /etc/nginx/conf.d/mywebsite.conf > /dev/null
             server {
-            listen 8080;
+            listen 80;
 
             server_name _;
             root /usr/share/nginx/html;
@@ -270,7 +266,7 @@ Resources:
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 8
       HealthyThresholdCount: 2
-      Port: 8080
+      Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 5
       VpcId: 
@@ -280,8 +276,6 @@ Outputs:
 
   LoadBalancerDNS:
     Description: DNS Loab Balancer
-    Value: !Sub 
-      - "http://${GetDNS}"
-      - GetDNS: !GetAtt WebAppLB.DNSName
+    Value: !Join ["://",["http", !GetAtt WebAppLB.DNSName]]
     Export:
       Name: !Sub ${EnvironmentName}-AppLB-DNS 
